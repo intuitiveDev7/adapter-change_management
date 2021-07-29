@@ -103,7 +103,7 @@ healthcheck(callback) {
     */
    if (error) {
        this.emitOffline();
-       log.error('\nError returned from Adapter instance ');
+       log.error('\nError returned from Adapter instance');
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -186,7 +186,7 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * get() takes a callback function.
      */
-     this.get(callback);
+     this.connector.get(callback);
   }
 
   /**
@@ -205,7 +205,7 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * post() takes a callback function.
      */
-     this.post(callback);
+     this.connector.post(callback);
   }
 }
 
