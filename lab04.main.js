@@ -39,7 +39,6 @@ function mainOnObject() {
     }
     console.log(`\nResponse returned from POST request:\n${JSON.stringify(data)}`)
   });
-
 }
 
 // Call mainOnObject to run it.

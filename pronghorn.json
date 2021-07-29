@@ -11,13 +11,37 @@
   "methods": [
     {
       "name": "getRecord",
-      "summary": "Get First Change Ticket",
+      "summary": "Get Change Tickets",
       "description": "Get the first ServiceNow change management ticket.",
+      "input": [],
+      "output": {
+        "name": "changeTickets",
+        "type": "array",
+        "description": "An array of objects. Each element is a change management ticket document.",
+        "schema": {
+          "type": "array",
+          "items": {
+            "title": "changeTicket",
+            "$ref": "changeRequest#/definitions/changeTicket"
+          }
+        }
+      },
+      "roles": [
+        "admin",
+        "engineer",
+        "operator"
+      ],
+      "task": true
+    },
+    {
+      "name": "postRecord",
+      "summary": "Post a Change Ticket",
+      "description": "Post a change ticket.",
       "input": [],
       "output": {
         "name": "changeTicket",
         "type": "object",
-        "description": "The first change change management ticket document.",
+                "description": "The first change change management ticket document.",
         "schema": {
           "title": "changeTicket",
           "$ref": "changeRequest#/definitions/changeTicket"

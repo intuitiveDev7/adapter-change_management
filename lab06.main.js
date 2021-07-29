@@ -180,35 +180,13 @@ healthcheck(callback) {
    *   handles the response.
    */
   getRecord(callback) {
-
-  let callbackData = null;
-  let callbackError = null;
-
-     let getResults = this.connector.get(callback);
-
-     if(typeof getResults === 'object' && yourVariable !== null){
-
-         if(getResults.hasOwnProperty('body')){
-             let jsonBody = JSON.parse(getResults.body);
-             let listOfReturnDocs = jsonBody.result;
-             const finalListOfDocs = {data: [] };
-
-             listOfReuturnDocs.forEach(function(entry){
-                 finalListOfDocs.data.push({ change_ticket_number: entry.number})
-             });
-            callback.data = finalListOfDocs;
-         }
-         else{
-             log.debug("The response did not contain the key body")
-         }
-     }
-     else{
-         log.debug("The result of the get call was not an object")
-     }
-     
-    //  this.connector.get(callback);
-    return callback(callback.data, callback.error);
-
+    /**
+     * Write the body for this function.
+     * The function is a wrapper for this.connector's get() method.
+     * Note how the object was instantiated in the constructor().
+     * get() takes a callback function.
+     */
+     this.connector.get(callback);
   }
 
   /**
