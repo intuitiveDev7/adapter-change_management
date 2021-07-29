@@ -103,7 +103,7 @@ healthcheck(callback) {
     */
    if (error) {
        this.emitOffline();
-       log.error('\nError returned from Adapter instance ' + this.id + ':\n${JSON.stringify(error)}')
+       log.error('\nError returned from Adapter instance ' + this.ids);
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -118,7 +118,7 @@ healthcheck(callback) {
       */
    } else {
        this.emitOnline();
-       log.debug('\nAdapter instance ' + this.id + ' online and returned the following result:\n${JSON.stringify(result)}')
+       log.debug('\nAdapter instance ' + this.id + ' online');
      /**
       * Write this block.
       * If no runtime problems were detected, emit ONLINE.
@@ -132,9 +132,6 @@ healthcheck(callback) {
    }
  });
 }
-
-  this.emitOnline();
-  this.emitOffline();
 
   /**
    * @memberof ServiceNowAdapter
