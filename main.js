@@ -186,7 +186,7 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * get() takes a callback function.
      */
-     this.getRecord(callback);
+     this.getRecord(response, callback);
   }
 
   /**
