@@ -253,14 +253,12 @@ healthcheck(callback) {
             else{
                 log.info("The result of the get call was not an object")
             }
+
+                log.info("callback data: " + JSON.stringify(callbackData));
+
+                return callback(callbackData, callbackError);
         }
-
     });    
-    
-    log.info("callback data: " + JSON.stringify(callbackData));
-
-    return callback(callbackData, callbackError);
-
   }
 
   /**
