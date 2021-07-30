@@ -188,6 +188,8 @@ healthcheck(callback) {
 
      let getResults = this.connector.get(callback);
 
+     log.info('Results: ${JSON.stringify(getResults)}');
+
      if(typeof getResults === 'object' && yourVariable !== null){
 
          if(getResults.hasOwnProperty('body')){
