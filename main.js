@@ -248,8 +248,7 @@ healthcheck(callback) {
 
     let callbackData = null;
     let callbackError = null;
-    let listOfReturnDocs = null;
-    const finalListOfDocs = [];
+    const returnedDoc = {};
 
      this.connector.post((result, error) => {
         if (error) {
