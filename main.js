@@ -257,6 +257,8 @@ healthcheck(callback) {
 
     });    
     
+    log.info("callback data: " + JSON.stringify(callbackData));
+
     return callback(callbackData, callbackError);
 
   }
