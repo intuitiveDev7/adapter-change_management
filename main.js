@@ -192,6 +192,7 @@ healthcheck(callback) {
         
     } else {
        log.info('Result:\n' + JSON.stringify(result));
+       callbackData = "WeeeEEEEE";
     }
 
     });    
@@ -228,7 +229,7 @@ healthcheck(callback) {
     //  }
      
     // //  this.connector.get(callback);
-    // return callback(callbackData, callbackError);
+    return callback(callbackData, callbackError);
 
   }
 
