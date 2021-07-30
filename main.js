@@ -183,10 +183,11 @@ healthcheck(callback) {
 
   let callbackData = null;
   let callbackError = null;
+  var getResults = new Object();
 
   log.info('getRecord starting');
 
-     let getResults = this.connector.get(callback);
+     getResults = this.connector.get(callback);
 
      if(getResults !== null){
 
