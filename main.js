@@ -205,14 +205,23 @@ healthcheck(callback) {
                     let listOfReturnDocs = jsonBody.result;
                     const finalListOfDocs = {data: [] };
 
-                    listOfReuturnDocs.forEach(function(entry){
+                    for (let index = 0; index < listOfReuturnDocs.length; ++index){
                         finalListOfDocs.data.push({ change_ticket_number: entry.number, 
                         active: 'closed', priority: 'low', 
                         description: 'bogus data', 
                         work_start: '12-12', 
                         work_end: '13-13', 
                         change_ticket_key: '7756565656'})
-                    });
+                    }
+
+                    // listOfReuturnDocs.forEach(function(entry){
+                    //     finalListOfDocs.data.push({ change_ticket_number: entry.number, 
+                    //     active: 'closed', priority: 'low', 
+                    //     description: 'bogus data', 
+                    //     work_start: '12-12', 
+                    //     work_end: '13-13', 
+                    //     change_ticket_key: '7756565656'})
+                    // });
                     
                     callbackData = finalListOfDocs;
                 }
