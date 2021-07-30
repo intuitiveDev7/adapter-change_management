@@ -248,7 +248,8 @@ healthcheck(callback) {
 
     let callbackData = null;
     let callbackError = null;
-    const returnedDoc = {};
+    let returnedDoc = null;
+    let finalDoc = null;
 
      this.connector.post((result, error) => {
         if (error) {
@@ -266,7 +267,6 @@ healthcheck(callback) {
                 if(result.hasOwnProperty('body')){
                     let jsonBody = JSON.parse(result.body);
                     returnedDoc = jsonBody.result;
-                    const finalDoc = {};
 
                     finalDoc = {
                         change_ticket_number: returnedDoc.number, 
