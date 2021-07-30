@@ -188,9 +188,9 @@ healthcheck(callback) {
 
      let getResults = this.connector.get(callback);
 
-     log.info('Results: ${JSON.stringify(getResults)}');
+     log.info('\nResults:\n' + getResults.body);
 
-     if(typeof getResults === 'object' && yourVariable !== null){
+     if(typeof getResults === 'object' && getResults !== null){
 
          if(getResults.hasOwnProperty('body')){
              let jsonBody = JSON.parse(getResults.body);
