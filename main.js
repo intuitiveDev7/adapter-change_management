@@ -186,8 +186,6 @@ healthcheck(callback) {
     let listOfReturnDocs = null;
     const finalListOfDocs = [];
 
-    log.info('getRecord starting');
-
     this.connector.get((result, error) => {
         if (error) {
             
@@ -203,46 +201,22 @@ healthcheck(callback) {
 
                 if(result.hasOwnProperty('body')){
                     let jsonBody = JSON.parse(result.body);
-
-                    log.info("\njsonBody:\n" + JSON.stringify(jsonBody));
-
                     listOfReturnDocs = jsonBody.result;
-
-                    log.info("\nlistOfReturnDocs:\n" + JSON.stringify(listOfReturnDocs));
                     const finalListOfDocs = [];
-
-                    log.info("listOfReturnDocs length: " + listOfReturnDocs.length);
 
                     listOfReturnDocs.forEach(function (currentDoc){
                         let tempObj = {};
                         tempObj = {
                             change_ticket_number: currentDoc.number, 
-                            active: 'closed', 
-                            priority: 'low', 
-                            description: 'bogus data', 
-                            work_start: '12-12', 
-                            work_end: '13-13', 
-                            change_ticket_key: '7756565656'}
+                            active: currentDoc.active, 
+                            priority: currentDoc.priority, 
+                            description: currentDoc.description, 
+                            work_start: currentDoc.work_start, 
+                            work_end: currentDoc.work_end, 
+                            change_ticket_key: currentDoc.sys_id}
 
                             finalListOfDocs.push(tempObj);
                         });
-
-                        // finalListOfDocs.data.push({ change_ticket_number: entry.number, 
-                        // active: 'closed', 
-                        // priority: 'low', 
-                        // description: 'bogus data', 
-                        // work_start: '12-12', 
-                        // work_end: '13-13', 
-                        // change_ticket_key: '7756565656'})
-
-                    // listOfReuturnDocs.forEach(function(entry){
-                    //     finalListOfDocs.data.push({ change_ticket_number: entry.number, 
-                    //     active: 'closed', priority: 'low', 
-                    //     description: 'bogus data', 
-                    //     work_start: '12-12', 
-                    //     work_end: '13-13', 
-                    //     change_ticket_key: '7756565656'})
-                    // });
                     
                     callbackData = finalListOfDocs;
                 }
@@ -254,7 +228,7 @@ healthcheck(callback) {
                 log.info("The result of the get call was not an object")
             }
 
-                log.info("callback data: " + JSON.stringify(callbackData));
+                log.info("debug callback data: " + JSON.stringify(callbackData));
 
                 return callback(callbackData, callbackError);
         }
