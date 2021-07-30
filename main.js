@@ -204,9 +204,11 @@ healthcheck(callback) {
                 if(result.hasOwnProperty('body')){
                     let jsonBody = JSON.parse(result.body);
 
-                    log.info("jsonBody:\n" + JSON.stringify(jsonBody));
+                    log.info("\njsonBody:\n" + JSON.stringify(jsonBody));
 
                     listOfReturnDocs = jsonBody.result;
+
+                    log.info("\nlistOfReturnDocs:\n" + JSON.stringify(listOfReturnDocs));
                     // const finalListOfDocs = [];
 
                     // for (let index = 0; index <= listOfReuturnDocs.length - 1; ++index){
