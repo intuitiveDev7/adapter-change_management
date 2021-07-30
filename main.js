@@ -188,7 +188,7 @@ healthcheck(callback) {
 
      let getResults = this.connector.get(callback);
 
-     if(isObject(getResults)){
+     if(getResults !== null){
 
         log.info('getResults is an object')
 
