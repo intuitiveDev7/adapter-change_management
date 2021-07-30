@@ -95,15 +95,11 @@ class ServiceNowAdapter extends EventEmitter {
  */
 healthcheck(callback) {
  this.getRecord((result, error) => {
-   /**
-    * For this lab, complete the if else conditional
-    * statements that check if an error exists
-    * or the instance was hibernating. You must write
-    * the blocks for each branch.
-    */
    if (error) {
        this.emitOffline();
-       log.error('\nError returned from Adapter instance');
+       log.error('\nError returned from Adapter instance ' + this.id);
+
+       callback(error);
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -118,7 +114,9 @@ healthcheck(callback) {
       */
    } else {
        this.emitOnline();
-       log.debug('\nAdapter instance online');
+       log.debug('\nAdapter instance ' + this.id + ' is online');
+
+       callback(result);
      /**
       * Write this block.
       * If no runtime problems were detected, emit ONLINE.
@@ -180,30 +178,32 @@ healthcheck(callback) {
    *   handles the response.
    */
   getRecord(callback) {
-
+    
+    //initialize vars
     let callbackData = null;
     let callbackError = null;
     let listOfReturnDocs = null;
     const finalListOfDocs = [];
 
+    //call get function
     this.connector.get((result, error) => {
+        //if error return error callback
         if (error) {
-            
             callbackError = error;
-
         } else {
-
-            log.info('Result:\n' + JSON.stringify(result));
-
+            //if get call result is not null and is also an obj
             if(result !== null && typeof result === 'object'){
 
-                log.info('result is an object')
-
+                //if result has 'body' key, parse body into jObject
                 if(result.hasOwnProperty('body')){
                     let jsonBody = JSON.parse(result.body);
+
+                    //list of objects in results under 'result' key
                     listOfReturnDocs = jsonBody.result;
                     const finalListOfDocs = [];
 
+                    //loop through list of obj and push each obj to final list
+                    //temp obj converts current obj values into generic final results
                     listOfReturnDocs.forEach(function (currentDoc){
                         let tempObj = {};
                         tempObj = {
@@ -217,7 +217,6 @@ healthcheck(callback) {
 
                             finalListOfDocs.push(tempObj);
                         });
-                    
                     callbackData = finalListOfDocs;
                 }
                 else{
@@ -227,9 +226,7 @@ healthcheck(callback) {
             else{
                 log.info("The result of the get call was not an object")
             }
-
-                log.info("debug GET callback data: " + JSON.stringify(callbackData));
-
+                //return callback data or error
                 return callback(callbackData, callbackError);
         }
     });    
@@ -245,29 +242,27 @@ healthcheck(callback) {
    *   handles the response.
    */
   postRecord(callback) {
-
+    
+    //initialize vars
     let callbackData = null;
     let callbackError = null;
     let returnedDoc = null;
     let finalDoc = null;
-
+     
+     //call post function
      this.connector.post((result, error) => {
         if (error) {
-            
             callbackError = error;
-
         } else {
-
-            log.info('Result:\n' + JSON.stringify(result));
-
+            //validate that result in not null and also an object
             if(result !== null && typeof result === 'object'){
-
-                log.info('result is an object')
-
+                
+                //if result contains body key, parse result.body into JSON obj
                 if(result.hasOwnProperty('body')){
                     let jsonBody = JSON.parse(result.body);
                     returnedDoc = jsonBody.result;
 
+                    //create obj from from values in result
                     finalDoc = {
                         change_ticket_number: returnedDoc.number, 
                         active: returnedDoc.active, 
@@ -277,7 +272,6 @@ healthcheck(callback) {
                         work_end: returnedDoc.work_end, 
                         change_ticket_key: returnedDoc.sys_id
                         }
-
                     callbackData = finalDoc;
                 }
                 else{
@@ -287,9 +281,7 @@ healthcheck(callback) {
             else{
                 log.info("The result of the get call was not an object")
             }
-
-                log.info("debug POST callback data: " + JSON.stringify(callbackData));
-
+                //return data or error
                 return callback(callbackData, callbackError);
         }
     });  
