@@ -267,23 +267,19 @@ healthcheck(callback) {
                 if(result.hasOwnProperty('body')){
                     let jsonBody = JSON.parse(result.body);
                     listOfReturnDocs = jsonBody.result;
-                    const finalListOfDocs = [];
+                    const finalDoc = {};
 
-                    listOfReturnDocs.forEach(function (currentDoc){
-                        let tempObj = {};
-                        tempObj = {
-                            change_ticket_number: currentDoc.number, 
-                            active: currentDoc.active, 
-                            priority: currentDoc.priority, 
-                            description: currentDoc.description, 
-                            work_start: currentDoc.work_start, 
-                            work_end: currentDoc.work_end, 
-                            change_ticket_key: currentDoc.sys_id}
+                    finalDoc = {
+                        change_ticket_number: currentDoc.number, 
+                        active: currentDoc.active, 
+                        priority: currentDoc.priority, 
+                        description: currentDoc.description, 
+                        work_start: currentDoc.work_start, 
+                        work_end: currentDoc.work_end, 
+                        change_ticket_key: currentDoc.sys_id
+                        }
 
-                            finalListOfDocs.push(tempObj);
-                        });
-                    
-                    callbackData = finalListOfDocs;
+                    callbackData = finalDoc;
                 }
                 else{
                     log.info("The response did not contain the key body")
