@@ -34,6 +34,8 @@ class ServiceNowAdapter extends EventEmitter {
    * @param {error} [errorMessage] - An error thrown by REST API call.
    */
 
+   let responseData = null; 
+
   /**
    * Here we document the adapter properties.
    * @typedef {object} ServiceNowAdapter~adapterProperties - Adapter
@@ -179,18 +181,17 @@ healthcheck(callback) {
    * @param {ServiceNowAdapter~requestCallback} callback - The callback that
    *   handles the response.
    */
-  getRecord(callback) {
+  getRecord(responseData, callback) {
 
     let callbackData = null;
     let callbackError = null;
-    let getResults = new Object();
 
     log.info('getRecord starting');
-    getResults = this.connector.get();
+    responseData = this.connector.get(callback);
 
-    log.info("getResults:\n" + JSON.stringify(getResults));
+    log.info("getResults:\n" + JSON.stringify(responseData));
 
-    if(getResults !== null){
+    if(responseData !== null){
 
         log.info('getResults is an object')
 
