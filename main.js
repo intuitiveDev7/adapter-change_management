@@ -213,8 +213,10 @@ healthcheck(callback) {
 
                     log.info("listOfReturnDocs length: " + listOfReturnDocs.length);
 
-                    for (let index = 0; index < listOfReuturnDocs.length; ++index){
+                    listOfReturnDocs.forEach(function (currentDoc){
                         log.info("YO YO YO YO YO YO YO");
+                        { break; }
+                    });
                         // finalListOfDocs.data.push({ change_ticket_number: entry.number, 
                         // active: 'closed', 
                         // priority: 'low', 
@@ -222,8 +224,6 @@ healthcheck(callback) {
                         // work_start: '12-12', 
                         // work_end: '13-13', 
                         // change_ticket_key: '7756565656'})
-                        { break; }
-                    }
 
                     // listOfReuturnDocs.forEach(function(entry){
                     //     finalListOfDocs.data.push({ change_ticket_number: entry.number, 
