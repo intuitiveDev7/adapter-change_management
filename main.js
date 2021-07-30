@@ -193,6 +193,8 @@ healthcheck(callback) {
              let listOfReturnDocs = jsonBody.result;
              const finalListOfDocs = {data: [] };
 
+            log.debug('Inside function. Results body: ${JSON.stringify(jsonBody)}')
+
              listOfReuturnDocs.forEach(function(entry){
                  finalListOfDocs.data.push({ change_ticket_number: entry.number, 
                  active: 'closed', priority: 'low', 
