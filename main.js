@@ -179,46 +179,56 @@ healthcheck(callback) {
    * @param {ServiceNowAdapter~requestCallback} callback - The callback that
    *   handles the response.
    */
-  getRecord(responseData, callback) {
+  getRecord(callback) {
 
     let callbackData = null;
     let callbackError = null;
     let responseData = null; 
 
     log.info('getRecord starting');
-    responseData = this.connector.get(callback);
 
-    log.info("getResults:\n" + JSON.stringify(responseData));
+    this.getRecord((result, error) => {
+    if (error) {
+        
+    } else {
+       log.info('Result:\n' + JSON.stringify(result));
+    }
 
-    if(responseData !== null){
+    });    
 
-        log.info('getResults is an object')
+    // responseData = this.get(callback);
 
-        if(getResults.hasOwnProperty(body)){
-             let jsonBody = JSON.parse(getResults.body);
-             let listOfReturnDocs = jsonBody.result;
-             const finalListOfDocs = {data: [] };
+    // log.info("getResults:\n" + JSON.stringify(responseData));
 
-             listOfReuturnDocs.forEach(function(entry){
-                 finalListOfDocs.data.push({ change_ticket_number: entry.number, 
-                 active: 'closed', priority: 'low', 
-                 description: 'bogus data', 
-                 work_start: '12-12', 
-                 work_end: '13-13', 
-                 change_ticket_key: '7756565656'})
-             });
-            callbackData = finalListOfDocs;
-         }
-         else{
-             log.info("The response did not contain the key body")
-         }
-     }
-     else{
-         log.info("The result of the get call was not an object")
-     }
+    // if(responseData !== null){
+
+    //     log.info('getResults is an object')
+
+    //     if(getResults.hasOwnProperty(body)){
+    //          let jsonBody = JSON.parse(getResults.body);
+    //          let listOfReturnDocs = jsonBody.result;
+    //          const finalListOfDocs = {data: [] };
+
+    //          listOfReuturnDocs.forEach(function(entry){
+    //              finalListOfDocs.data.push({ change_ticket_number: entry.number, 
+    //              active: 'closed', priority: 'low', 
+    //              description: 'bogus data', 
+    //              work_start: '12-12', 
+    //              work_end: '13-13', 
+    //              change_ticket_key: '7756565656'})
+    //          });
+    //         callbackData = finalListOfDocs;
+    //      }
+    //      else{
+    //          log.info("The response did not contain the key body")
+    //      }
+    //  }
+    //  else{
+    //      log.info("The result of the get call was not an object")
+    //  }
      
-    //  this.connector.get(callback);
-    return callback(callbackData, callbackError);
+    // //  this.connector.get(callback);
+    // return callback(callbackData, callbackError);
 
   }
 
