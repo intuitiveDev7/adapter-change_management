@@ -188,14 +188,14 @@ healthcheck(callback) {
 
      let getResults = this.connector.get(callback);
 
-     if(typeof getResults === 'object' && getResults !== null){
+     if(isObject(getResults)){
+
+        log.info('getResults is an object')
 
          if(getResults.hasOwnProperty('body')){
              let jsonBody = JSON.parse(getResults.body);
              let listOfReturnDocs = jsonBody.result;
              const finalListOfDocs = {data: [] };
-
-            log.info('Inside function. Results body print')
 
              listOfReuturnDocs.forEach(function(entry){
                  finalListOfDocs.data.push({ change_ticket_number: entry.number, 
