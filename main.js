@@ -215,7 +215,6 @@ healthcheck(callback) {
 
                     listOfReturnDocs.forEach(function (currentDoc){
                         log.info("YO YO YO YO YO YO YO");
-                        { break; }
                     });
                         // finalListOfDocs.data.push({ change_ticket_number: entry.number, 
                         // active: 'closed', 
