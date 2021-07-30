@@ -189,11 +189,13 @@ healthcheck(callback) {
 
      getResults = this.connector.get(callback);
 
+    log.info("getResults:\n" + JSON.stringify(getResults));
+
      if(getResults !== null){
 
         log.info('getResults is an object')
 
-         if(getResults.hasOwnProperty('body')){
+         if(getResults.hasOwnProperty(body)){
              let jsonBody = JSON.parse(getResults.body);
              let listOfReturnDocs = jsonBody.result;
              const finalListOfDocs = {data: [] };
