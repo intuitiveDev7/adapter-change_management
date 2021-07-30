@@ -201,7 +201,7 @@ healthcheck(callback) {
                  work_end: '13-13', 
                  change_ticket_key: '7756565656'})
              });
-            callback.data = finalListOfDocs;
+            callbackData = finalListOfDocs;
          }
          else{
              log.debug("The response did not contain the key body")
@@ -212,7 +212,7 @@ healthcheck(callback) {
      }
      
     //  this.connector.get(callback);
-    return callback(callback.data, callback.error);
+    return callback(callbackData, callbackError);
 
   }
 
