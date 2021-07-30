@@ -200,7 +200,7 @@ healthcheck(callback) {
 
                 log.info('result is an object')
 
-                if(result.hasOwnProperty(body)){
+                if(result.hasOwnProperty('body')){
                     let jsonBody = JSON.parse(result.body);
                     let listOfReturnDocs = jsonBody.result;
                     const finalListOfDocs = {data: [] };
