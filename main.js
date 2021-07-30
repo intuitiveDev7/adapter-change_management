@@ -213,16 +213,17 @@ healthcheck(callback) {
 
                     log.info("listOfReturnDocs length: " + listOfReturnDocs.length);
 
-                    // for (let index = 0; index <= listOfReuturnDocs.length; ++index){
-                    //     finalListOfDocs.data.push({ change_ticket_number: entry.number, 
-                    //     active: 'closed', 
-                    //     priority: 'low', 
-                    //     description: 'bogus data', 
-                    //     work_start: '12-12', 
-                    //     work_end: '13-13', 
-                    //     change_ticket_key: '7756565656'})
-                    //     { break; }
-                    // }
+                    for (let index = 0; index < listOfReuturnDocs.length; ++index){
+                        log.info("YO YO YO YO YO YO YO");
+                        // finalListOfDocs.data.push({ change_ticket_number: entry.number, 
+                        // active: 'closed', 
+                        // priority: 'low', 
+                        // description: 'bogus data', 
+                        // work_start: '12-12', 
+                        // work_end: '13-13', 
+                        // change_ticket_key: '7756565656'})
+                        { break; }
+                    }
 
                     // listOfReuturnDocs.forEach(function(entry){
                     //     finalListOfDocs.data.push({ change_ticket_number: entry.number, 
