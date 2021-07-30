@@ -227,7 +227,7 @@ healthcheck(callback) {
                     //     change_ticket_key: '7756565656'})
                     // });
                     
-                    callbackData = finalListOfDocs;
+                    callbackData = null;
                 }
                 else{
                     log.info("The response did not contain the key body")
