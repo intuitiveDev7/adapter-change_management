@@ -99,7 +99,7 @@ healthcheck(callback) {
        this.emitOffline();
        log.error('\nError returned from Adapter instance ' + this.id);
 
-       callback(error);
+       return callback(error);
      /**
       * Write this block.
       * If an error was returned, we need to emit OFFLINE.
@@ -116,7 +116,7 @@ healthcheck(callback) {
        this.emitOnline();
        log.debug('\nAdapter instance ' + this.id + ' is online');
 
-       callback(result);
+       return callback(result);
      /**
       * Write this block.
       * If no runtime problems were detected, emit ONLINE.
