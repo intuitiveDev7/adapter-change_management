@@ -245,13 +245,59 @@ healthcheck(callback) {
    *   handles the response.
    */
   postRecord(callback) {
-    /**
-     * Write the body for this function.
-     * The function is a wrapper for this.connector's post() method.
-     * Note how the object was instantiated in the constructor().
-     * post() takes a callback function.
-     */
-     this.connector.post(callback);
+
+    let callbackData = null;
+    let callbackError = null;
+    let listOfReturnDocs = null;
+    const finalListOfDocs = [];
+
+     this.connector.post((result, error) => {
+        if (error) {
+            
+            callbackError = error;
+
+        } else {
+
+            log.info('Result:\n' + JSON.stringify(result));
+
+            if(result !== null && typeof result === 'object'){
+
+                log.info('result is an object')
+
+                if(result.hasOwnProperty('body')){
+                    let jsonBody = JSON.parse(result.body);
+                    listOfReturnDocs = jsonBody.result;
+                    const finalListOfDocs = [];
+
+                    listOfReturnDocs.forEach(function (currentDoc){
+                        let tempObj = {};
+                        tempObj = {
+                            change_ticket_number: currentDoc.number, 
+                            active: currentDoc.active, 
+                            priority: currentDoc.priority, 
+                            description: currentDoc.description, 
+                            work_start: currentDoc.work_start, 
+                            work_end: currentDoc.work_end, 
+                            change_ticket_key: currentDoc.sys_id}
+
+                            finalListOfDocs.push(tempObj);
+                        });
+                    
+                    callbackData = finalListOfDocs;
+                }
+                else{
+                    log.info("The response did not contain the key body")
+                }
+            }
+            else{
+                log.info("The result of the get call was not an object")
+            }
+
+                log.info("debug callback data: " + JSON.stringify(callbackData));
+
+                return callback(callbackData, callbackError);
+        }
+    });  
   }
 }
 
