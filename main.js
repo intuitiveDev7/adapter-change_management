@@ -187,7 +187,7 @@ healthcheck(callback) {
 
     log.info('getRecord starting');
 
-    this.getRecord((result, error) => {
+    this.connector.get((result, error) => {
     if (error) {
         
     } else {
