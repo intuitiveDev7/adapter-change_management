@@ -184,7 +184,7 @@ healthcheck(callback) {
   let callbackData = null;
   let callbackError = null;
 
-  log.info('Does this log show up');
+  log.info('getRecord starting');
 
      let getResults = this.connector.get(callback);
 
@@ -195,7 +195,7 @@ healthcheck(callback) {
              let listOfReturnDocs = jsonBody.result;
              const finalListOfDocs = {data: [] };
 
-            log.info('Inside function. Results body: ${JSON.stringify(jsonBody)}')
+            log.info('Inside function. Results body print')
 
              listOfReuturnDocs.forEach(function(entry){
                  finalListOfDocs.data.push({ change_ticket_number: entry.number, 
@@ -208,11 +208,11 @@ healthcheck(callback) {
             callbackData = finalListOfDocs;
          }
          else{
-             log.debug("The response did not contain the key body")
+             log.info("The response did not contain the key body")
          }
      }
      else{
-         log.debug("The result of the get call was not an object")
+         log.info("The result of the get call was not an object")
      }
      
     //  this.connector.get(callback);
