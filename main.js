@@ -266,16 +266,16 @@ healthcheck(callback) {
 
                 if(result.hasOwnProperty('body')){
                     let jsonBody = JSON.parse(result.body);
-                    listOfReturnDocs = jsonBody.result;
+                    returnedDoc = jsonBody.result;
                     const finalDoc = {};
 
                     finalDoc = {
-                        change_ticket_number: currentDoc.number, 
-                        active: currentDoc.active, 
-                        priority: currentDoc.priority, 
-                        description: currentDoc.description, 
-                        work_start: currentDoc.work_start, 
-                        work_end: currentDoc.work_end, 
+                        change_ticket_number: returnedDoc.number, 
+                        active: returnedDoc.active, 
+                        priority: returnedDoc.priority, 
+                        description: returnedDoc.description, 
+                        work_start: returnedDoc.work_start, 
+                        work_end: returnedDoc.work_end, 
                         change_ticket_key: currentDoc.sys_id
                         }
 
