@@ -214,15 +214,19 @@ healthcheck(callback) {
                     log.info("listOfReturnDocs length: " + listOfReturnDocs.length);
 
                     listOfReturnDocs.forEach(function (currentDoc){
-                        // finalListOfDocs.data.push({
-                        //     change_ticket_number: currentDoc.number, 
-                        //     active: 'closed', 
-                        //     priority: 'low', 
-                        //     description: 'bogus data', 
-                        //     work_start: '12-12', 
-                        //     work_end: '13-13', 
-                        //     change_ticket_key: '7756565656'})
-                    });
+                        let tempObj = {};
+                        tempObj = {
+                            change_ticket_number: currentDoc.number, 
+                            active: 'closed', 
+                            priority: 'low', 
+                            description: 'bogus data', 
+                            work_start: '12-12', 
+                            work_end: '13-13', 
+                            change_ticket_key: '7756565656'}
+
+                            finalListOfDocs.push(tempObj);
+                        });
+
                         // finalListOfDocs.data.push({ change_ticket_number: entry.number, 
                         // active: 'closed', 
                         // priority: 'low', 
