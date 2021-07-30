@@ -188,8 +188,6 @@ healthcheck(callback) {
 
      let getResults = this.connector.get(callback);
 
-     log.info('\nResults:\n' + getResults.body);
-
      if(typeof getResults === 'object' && getResults !== null){
 
          if(getResults.hasOwnProperty('body')){
