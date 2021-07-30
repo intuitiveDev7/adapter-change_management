@@ -275,7 +275,7 @@ healthcheck(callback) {
                         description: returnedDoc.description, 
                         work_start: returnedDoc.work_start, 
                         work_end: returnedDoc.work_end, 
-                        change_ticket_key: currentDoc.sys_id
+                        change_ticket_key: returnedDoc.sys_id
                         }
 
                     callbackData = finalDoc;
