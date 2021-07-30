@@ -112,7 +112,7 @@ healthcheck(callback) {
    * @method emitOffline
    * @summary Emit OFFLINE
    * @description Emits an OFFLINE event to IAP indicating the external
-   *   system is not available.
+   *   system is not available
    */
   emitOffline() {
     this.emitStatus('OFFLINE');
