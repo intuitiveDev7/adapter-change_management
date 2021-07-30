@@ -228,7 +228,7 @@ healthcheck(callback) {
                 log.info("The result of the get call was not an object")
             }
 
-                log.info("debug callback data: " + JSON.stringify(callbackData));
+                log.info("debug GET callback data: " + JSON.stringify(callbackData));
 
                 return callback(callbackData, callbackError);
         }
@@ -293,7 +293,7 @@ healthcheck(callback) {
                 log.info("The result of the get call was not an object")
             }
 
-                log.info("debug callback data: " + JSON.stringify(callbackData));
+                log.info("debug POST callback data: " + JSON.stringify(callbackData));
 
                 return callback(callbackData, callbackError);
         }
